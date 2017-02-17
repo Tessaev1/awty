@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,10 +9,98 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#F9F9F9"
     tools:context="edu.uw.tessa.awty.MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/messageLabel"
+        android:text="What would you like to send?"
+        android:textSize="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/message"
+        android:hint="Type your message here"
+        android:inputType="textLongMessage"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Space
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+        android:layout_weight="0.57" />
+
+    <TextView
+        android:id="@+id/numberLabel"
+        android:text="Who are you sending it to?"
+        android:textSize="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/number"
+        android:hint="Enter phone number"
+        android:textSize="20dp"
+        android:inputType="phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.57" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/durationLabel"
+            android:text="Send the message every"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/duration"
+            android:textSize="20dp"
+            android:inputType="number"
+            android:layout_width="37dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/durationLabel2"
+            android:text="minutes"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.59" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <Button
+        android:text="Start"
+        android:textSize="20dp"
+        android:textColor="#A5FF9B"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/startButton"
+        android:background="#F9F9F9"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_weight="0.27" />
+</LinearLayout>
