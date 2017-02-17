@@ -75,11 +75,20 @@
 
         <TextView
             android:id="@+id/durationLabel2"
-            android:text="minutes"
+            android:text="minute(s)"
             android:textSize="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/durationError"
+        android:text="The minimum duration is 1 minute"
+        android:textColor="#FF0000"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        android:layout_width="226dp"
+        android:layout_height="wrap_content" />
 
     <Space
         android:layout_width="match_parent"
