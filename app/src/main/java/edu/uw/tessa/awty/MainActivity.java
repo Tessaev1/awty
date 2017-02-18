@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public EditText durationInput;
     public static String message;
     public static String phoneNumber;
-    public int duration;
+    public String duration;
 
     public final static String TAG = "MainActivity";
 
@@ -34,11 +34,16 @@ public class MainActivity extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (start.getText().toString().toLowerCase().equals("start")) {
-                    start.setText("Stop");
                     getInputFields();
 
+                    if (!checkIfValid()) {
+                        return;
+                    }
+
+                    Log.i(TAG, "alarm started");
+                    start.setText("Stop");
                     alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                            SystemClock.elapsedRealtime(), duration * 60 * 1000, pendingIntent);
+                            SystemClock.elapsedRealtime(), Integer.parseInt(duration) * 60 * 1000, pendingIntent);
                 } else {
                     start.setText("Start");
                     if (alarmManager!= null) {
@@ -57,11 +62,20 @@ public class MainActivity extends AppCompatActivity {
         phoneNumber = phoneInput.getText().toString();
 
         durationInput = (EditText) findViewById(R.id.duration);
-        duration = Integer.parseInt(durationInput.getText().toString());
-        if (duration < 1) {
-            findViewById(R.id.durationError).setVisibility(View.VISIBLE);
-        } else {
-            findViewById(R.id.durationError).setVisibility(View.INVISIBLE);
+        duration = durationInput.getText().toString();
+    }
+
+    public boolean checkIfValid() {
+        if (message.equals("") || phoneNumber.equals("") ||
+                duration.equals("")) {
+            Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+            return false;
         }
+        if (Integer.parseInt(duration) < 1) {
+            Toast.makeText(this, "Duration cannot be under 1 minute", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }

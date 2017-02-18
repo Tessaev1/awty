@@ -19,8 +19,8 @@ public final class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String toast = MainActivity.phoneNumber + ": " + MainActivity.message;
-        Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
+        String toastMessage = "Texting {" + MainActivity.phoneNumber + "} \n" + MainActivity.message;
+        Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show();
 
         /*
         SmsManager sms = SmsManager.getDefault();
