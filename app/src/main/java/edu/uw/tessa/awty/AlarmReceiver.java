@@ -1,13 +1,8 @@
 package edu.uw.tessa.awty;
 
-import android.app.Activity;
 import android.content.*;
+import android.telephony.SmsManager;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 /**
@@ -19,13 +14,13 @@ public final class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String toastMessage = "Texting {" + MainActivity.phoneNumber + "} \n" + MainActivity.message;
-        Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show();
-
-        /*
-        SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage(phoneNumberReciver, null, message, null, null);
-        Toast.makeText(context, "Alarm Triggered and SMS Sent", Toast.LENGTH_LONG).show();
-         */
+        try {
+            SmsManager sms = SmsManager.getDefault();
+            sms.sendTextMessage(MainActivity.phoneNumber, null, MainActivity.message, null, null);
+            Toast.makeText(context, "Alarm Triggered and SMS Sent", Toast.LENGTH_LONG).show();
+        } catch (Exception ex) {
+            Toast.makeText(context, "SMS failed, please try again later.", Toast.LENGTH_SHORT).show();
+            Log.i(TAG, "SMS failed: " + ex);
+        }
     }
 }

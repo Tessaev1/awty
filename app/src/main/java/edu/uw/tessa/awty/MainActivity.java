@@ -1,9 +1,11 @@
 package edu.uw.tessa.awty;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.SystemClock;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     }
 
-                    Log.i(TAG, "alarm started");
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS}, 1);
+
                     start.setText("Stop");
                     alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                             SystemClock.elapsedRealtime(), Integer.parseInt(duration) * 60 * 1000, pendingIntent);
