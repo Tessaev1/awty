@@ -17,7 +17,7 @@ public final class AlarmReceiver extends BroadcastReceiver {
         try {
             SmsManager sms = SmsManager.getDefault();
             sms.sendTextMessage(MainActivity.phoneNumber, null, MainActivity.message, null, null);
-            Toast.makeText(context, "Alarm Triggered and SMS Sent", Toast.LENGTH_LONG).show();
+            Log.i(TAG, "Alarm Triggered and SMS Sent");
         } catch (Exception ex) {
             Toast.makeText(context, "SMS failed, please try again later.", Toast.LENGTH_SHORT).show();
             Log.i(TAG, "SMS failed: " + ex);
